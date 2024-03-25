@@ -17,11 +17,42 @@ const CountryContainer = () => {
             loadCountries();
         }, []
     );
+
+    const addVisitedCountry = (country) => {
+        setVisitedCountries([...visitedCountries, country]);
+        const countryIndex = allCountries.indexOf(country);
+        setAllCountries(allCountries.toSpliced(countryIndex, 1));
+    }
+
+    const removeVisitedCountry = (country) => {
+        setAllCountries([...allCountries, country]);
+        const countryIndex = visitedCountries.indexOf(country);
+        setVisitedCountries(visitedCountries.toSpliced(countryIndex, 1));
+    }
+
+    const clearVisitedCountries = () => {
+        setVisitedCountries([]);
+        loadCountries();
+    }
+
     
     return (
-        <>
-            <CountryList countries={allCountries} />
-        </>
+        <div id="country-lists">
+            <div>
+            <h2>Countries To Visit</h2>
+            <CountryList countries={allCountries} toggleLists={addVisitedCountry} />
+            </div>
+            <div>
+            <h2>Visited Countries</h2>
+            <input
+                type="button"
+                name="clear"
+                value="Clear"
+                onClick={clearVisitedCountries}
+            />
+            <CountryList countries={visitedCountries} toggleLists={removeVisitedCountry} />
+            </div>
+        </div>
     );
 }
  
