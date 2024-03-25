@@ -20,9 +20,15 @@
 
 .country-list {
   line-height: 1.5;
-  width: 45%;
+  width: 48%;
 }
 
 .toggleButton {
   margin: 5px;
+}
+
+p {
+  line-height: 0.8;
+  font-size: 15px;
+  padding-left: 30px;
 }
