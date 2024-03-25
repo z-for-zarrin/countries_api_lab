@@ -10,6 +10,7 @@ const Country = ({ country, toggleLists }) => {
             <input
                 type="button"
                 name="visited"
+                className="toggleButton"
                 value="✓"
                 onClick={handleCheckbox}
             />

@@ -3,16 +3,26 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #5283e3;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-#country-lists {
-  display: flex; 
+#country-lists-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.country-list {
+  line-height: 1.5;
+  width: 45%;
+}
+
+.toggleButton {
+  margin: 5px;
 }

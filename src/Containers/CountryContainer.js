@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import CountryList from "../Components/CountryList";
+import SearchCountry from "../Components/SearchCountry";
 
 const CountryContainer = () => {
     
     const [allCountries, setAllCountries] = useState([]);
     const [visitedCountries, setVisitedCountries] = useState([]);
+    const [filteredCountries, setFilteredCountries] = useState([]);
 
     const loadCountries = async () => {
         const response = await fetch("https://restcountries.com/v3.1/all");
         const jsonData = await response.json();
         setAllCountries(jsonData);
+        setFilteredCountries(jsonData);
     }
 
     useEffect(
@@ -17,6 +20,12 @@ const CountryContainer = () => {
             loadCountries();
         }, []
     );
+
+    useEffect(
+        () => {
+            setFilteredCountries(allCountries);
+        }, [allCountries]
+    )
 
     const addVisitedCountry = (country) => {
         setVisitedCountries([...visitedCountries, country]);
@@ -37,12 +46,13 @@ const CountryContainer = () => {
 
     
     return (
-        <div id="country-lists">
-            <div>
+        <div id="country-lists-container">
+            <div className="country-list">
             <h2>Countries To Visit</h2>
-            <CountryList countries={allCountries} toggleLists={addVisitedCountry} />
+            <SearchCountry countries={allCountries} setFilteredCountries={setFilteredCountries}/>
+            <CountryList countries={filteredCountries} toggleLists={addVisitedCountry} />
             </div>
-            <div>
+            <div className="country-list">
             <h2>Visited Countries</h2>
             <input
                 type="button"
