@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CountryList from "../Components/CountryList";
 
 const CountryContainer = () => {
     
@@ -19,7 +20,7 @@ const CountryContainer = () => {
     
     return (
         <>
-            {JSON.stringify(allCountries)}
+            <CountryList countries={allCountries} />
         </>
     );
 }
